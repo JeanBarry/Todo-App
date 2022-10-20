@@ -10,8 +10,8 @@ const TodoSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  createdAt: { type: Date, default: Date.now },
-  completedAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, required: true },
+  completedAt: { type: Date, required: true },
 });
 
 const todoModel = mongoose.model("Todo", TodoSchema);

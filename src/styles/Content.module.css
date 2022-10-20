@@ -76,3 +76,13 @@
 .done_item {
   text-decoration: line-through;
 }
+
+.loading_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 4rem;
+  font-weight: bold;
+}
