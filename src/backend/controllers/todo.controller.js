@@ -9,7 +9,6 @@ const createTodo = async (todo) => {
 };
 
 const updateTodo = async (todo) => {
-  console.log(todo);
   return todoModel.updateOne({ _id: todo._id }, todo);
 };
 

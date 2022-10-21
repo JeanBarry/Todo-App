@@ -40,7 +40,7 @@ describe("Todo controller updateTodo", () => {
     expect(typeof todoController.updateTodo).toBe("function");
   });
   test("updateTodo should call Todo model updateOne", async () => {
-    await todoController.updateTodo();
+    await todoController.updateTodo(newTodo);
     expect(todoModel.updateOne).toHaveBeenCalled();
   });
   test("updateTodo should return an updated todo", async () => {

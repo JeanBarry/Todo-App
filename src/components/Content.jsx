@@ -5,10 +5,7 @@ const Content = () => {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const getTimePassed = (createdAt) => {
-    const timeStart = new Date(createdAt);
-    const timeNow = new Date();
-    const timePassed = timeNow - timeStart;
+  const getTimeString = (timePassed) => {
     const timePassedInSeconds = timePassed / 1000;
     const timePassedInMinutes = timePassedInSeconds / 60;
     const timePassedInHours = timePassedInMinutes / 60;
@@ -23,12 +20,40 @@ const Content = () => {
     return `${Math.floor(timePassedInSeconds)} seconds`;
   };
 
-  const completeTodo = (id) => {
+  const getTimePassed = (createdAt) => {
+    const timeStart = new Date(createdAt);
+    const timeNow = new Date();
+    const timePassed = timeNow - timeStart;
+    return getTimeString(timePassed);
+  };
+
+  const getTimeCompleted = (createdAt, completedAt) => {
+    const timeStart = new Date(createdAt);
+    const timeEnd = new Date(completedAt);
+    const timePassed = timeEnd - timeStart;
+    return getTimeString(timePassed);
+  };
+
+  const updateTodo = async (todo) => {
+    await fetch("/api/todo", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(todo),
+    });
+  };
+
+  const completeTodo = async (id) => {
+    const timeNow = new Date();
     const newTodos = [...todos];
-    const res = newTodos.find((todo) => todo._id === id);
-    newTodos[newTodos.indexOf(res)].completed = !res.completed;
+    const updatedTodo = newTodos.find((todo) => todo._id === id);
+    updatedTodo.done = true;
+    updatedTodo.completedAt = timeNow;
+    newTodos[newTodos.indexOf(updatedTodo)] = updatedTodo;
+    await updateTodo(updatedTodo);
     setTodos(newTodos);
-    //TODO: update the todo in the database
   };
 
   const getTodos = async () => {
@@ -110,8 +135,11 @@ const Content = () => {
                   return (
                     <li className={styles.list_item} key={todo._id}>
                       <p>{todo.content}</p>
-                      {/*<p>Time taken: {getTimePassed(todo.createdAt)}</p>*/}
-                      <button className={styles.item_button}>Clear Todo</button>
+                      <p>
+                        Time taken:{" "}
+                        {getTimeCompleted(todo.createdAt, todo.completedAt)}
+                      </p>
+                      {/*<button className={styles.item_button}>Clear Todo</button>*/}
                     </li>
                   );
                 }
