@@ -34,3 +34,18 @@ describe("Todo controller createTodo", () => {
     expect(todo).toEqual(newTodo);
   });
 });
+
+describe("Todo controller updateTodo", () => {
+  test("updateTodo should be a function", () => {
+    expect(typeof todoController.updateTodo).toBe("function");
+  });
+  test("updateTodo should call Todo model updateOne", async () => {
+    await todoController.updateTodo();
+    expect(todoModel.updateOne).toHaveBeenCalled();
+  });
+  test("updateTodo should return an updated todo", async () => {
+    todoModel.updateOne.mockReturnValue(newTodo);
+    const todo = await todoController.updateTodo(newTodo);
+    expect(todo).toEqual(newTodo);
+  });
+});

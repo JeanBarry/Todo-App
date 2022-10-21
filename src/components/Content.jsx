@@ -85,7 +85,7 @@ const Content = () => {
             </div>
             <ul className={styles.todo_list}>
               {todos.map((todo) => {
-                if (!todo.completed) {
+                if (!todo.done) {
                   return (
                     <li className={styles.list_item} key={todo._id}>
                       <p>{todo.content}</p>
@@ -106,7 +106,7 @@ const Content = () => {
             <h1 className={styles.section_title}>Done</h1>
             <ul className={styles.done_list}>
               {todos.map((todo) => {
-                if (todo.completed) {
+                if (todo.done) {
                   return (
                     <li className={styles.list_item} key={todo._id}>
                       <p>{todo.content}</p>

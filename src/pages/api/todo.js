@@ -6,6 +6,7 @@ connectToDatabase();
 const strategies = {
   GET: TodoController.getAllTodos,
   POST: TodoController.createTodo,
+  PUT: TodoController.updateTodo,
 };
 
 module.exports = async (req, res) => {
