@@ -9,3 +9,15 @@ lint:
 
 test:
 	npm run test
+
+install:
+	npm install
+
+build:
+	npm run build
+
+start:
+	npm run start
+
+clean:
+	rm -rf node_modules
