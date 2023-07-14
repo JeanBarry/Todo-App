@@ -7,6 +7,9 @@ dev: copy-env
 lint:
 	npm run lint
 
+lint-fix:
+	npm run lint:fix
+
 test:
 	npm run test
 
@@ -21,3 +24,6 @@ start:
 
 clean:
 	rm -rf node_modules
+
+storybook:
+	npm run storybook

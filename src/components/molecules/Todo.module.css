@@ -1,0 +1,23 @@
+.todo {
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.todo__text {
+    font-weight: 500;
+    min-width: 30%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.todo__content_text_pending {
+    max-width: 30%;
+}
+
+.todo__content_text_done {
+    max-width: 60%;
+}

@@ -1,19 +1,15 @@
-const todoModel = require("../database/models/todo.model");
+import TodoModel from '../database/models/todo.model';
 
-const getAllTodos = async () => {
-  return todoModel.find();
-};
+const getAllTodos = async () => TodoModel.find();
 
-const createTodo = async (todo) => {
-  return todoModel.create(todo);
-};
+const createTodo = async (todo) => TodoModel.create(todo);
 
-const updateTodo = async (todo) => {
-  return todoModel.updateOne({ _id: todo._id }, todo);
-};
+const updateTodo = async (id, todo) => TodoModel.updateOne({ _id: id }, todo);
 
-module.exports = {
+const todoController = {
   getAllTodos,
   createTodo,
   updateTodo,
 };
+
+export default todoController;

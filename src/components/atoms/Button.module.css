@@ -1,0 +1,22 @@
+.button {
+    padding: 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+}
+
+.primary {
+
+}
+
+.primary:hover {
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.secondary {
+
+}
+
+.disabled {
+    background-color: #9a9a9a;
+}
