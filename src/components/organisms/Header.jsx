@@ -1,6 +1,7 @@
-import styles from "../styles/Header.module.css";
+import React from 'react';
+import styles from './Header.module.css';
 
-const Header = () => {
+function Header() {
   return (
     <header>
       <nav className={styles.navbar}>
@@ -8,6 +9,6 @@ const Header = () => {
       </nav>
     </header>
   );
-};
+}
 
 export default Header;

@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
-const connectToDatabase = async () => {
+export default async function connectToDatabase() {
   const { DB_HOST, DB_PASSWORD, DB_USER, DB_NAME } = process.env;
   const connectionString = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`;
   try {
@@ -9,10 +9,7 @@ const connectToDatabase = async () => {
       useUnifiedTopology: true,
     });
   } catch (error) {
-    console.error("Error connecting to database", error);
+    // eslint-disable-next-line no-console
+    console.error('Error connecting to database', error);
   }
-};
-
-module.exports = {
-  connectToDatabase,
-};
+}

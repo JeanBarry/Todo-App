@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
+
 const { Schema } = mongoose;
 
 const TodoSchema = new Schema({
@@ -11,9 +12,9 @@ const TodoSchema = new Schema({
     default: false,
   },
   createdAt: { type: Date, required: true },
-  completedAt: { type: Date, required: true },
+  completedAt: { type: Date, default: null },
 });
 
-const todoModel = mongoose.model("Todo", TodoSchema);
+const TodoModel = mongoose.models.Todo || mongoose.model('Todo', TodoSchema);
 
-module.exports = todoModel;
+export default TodoModel;
