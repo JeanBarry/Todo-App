@@ -11,6 +11,7 @@ export default {
     fontSize: { control: 'text' },
     border: { control: 'boolean' },
     disabled: { control: 'boolean' },
+    type: { control: 'text' },
   },
   tags: ['atoms', 'input', 'autodocs'],
 };
@@ -23,5 +24,6 @@ export const Default = {
     fontSize: '16px',
     border: true,
     disabled: false,
+    type: 'text',
   },
 };

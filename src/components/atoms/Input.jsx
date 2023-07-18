@@ -4,6 +4,7 @@ import styles from './Input.module.css';
 
 function Input({
   placeholder,
+  type,
   onChange,
   height,
   width,
@@ -13,6 +14,7 @@ function Input({
 }) {
   return (
     <input
+      type={type}
       className={`
         ${styles.input}
         ${border ? styles.border : ''}
@@ -34,6 +36,7 @@ function Input({
 
 Input.propTypes = {
   placeholder: PropTypes.string,
+  type: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   height: PropTypes.string,
   width: PropTypes.string.isRequired,
@@ -47,6 +50,7 @@ Input.defaultProps = {
   height: null,
   border: false,
   disabled: false,
+  type: 'text',
 };
 
 export default Input;

@@ -1,12 +1,12 @@
 import React from 'react';
-import TodosPage from '../components/pages/TodosPage';
+import LoginPage from '../components/pages/LoginPage';
 
-function Home() {
+function Index() {
   return (
     <div>
-      <TodosPage />
+      <LoginPage />
     </div>
   );
 }
 
-export default Home;
+export default Index;
