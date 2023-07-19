@@ -15,6 +15,7 @@
   "dependencies": {
     "@tanstack/react-query": "^4.29.23",
     "axios": "^1.4.0",
+    "firebase": "^10.0.0",
     "mongoose": "^6.6.5",
     "next": "12.3.1",
     "prop-types": "^15.8.1",

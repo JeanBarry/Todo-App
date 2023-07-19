@@ -7,9 +7,14 @@ const inputIsEmail = (input) => {
   return emailRegex.test(input);
 };
 
+const inputHasMinLength = (input, minLength) => {
+  return input.length >= minLength;
+};
+
 const validators = {
   inputIsValid,
   inputIsEmail,
+  inputHasMinLength,
 };
 
 export default validators;

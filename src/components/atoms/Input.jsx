@@ -6,6 +6,7 @@ function Input({
   placeholder,
   type,
   onChange,
+  onKeyDown,
   height,
   width,
   fontSize,
@@ -30,6 +31,9 @@ function Input({
       onChange={(event) => {
         onChange(event.target.value);
       }}
+      onKeyDown={(event) => {
+        onKeyDown(event);
+      }}
     />
   );
 }
@@ -38,6 +42,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   type: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  onKeyDown: PropTypes.func,
   height: PropTypes.string,
   width: PropTypes.string.isRequired,
   fontSize: PropTypes.string.isRequired,
@@ -47,6 +52,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   placeholder: null,
+  onKeyDown: () => {},
   height: null,
   border: false,
   disabled: false,

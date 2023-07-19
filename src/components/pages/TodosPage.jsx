@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 import { useQuery } from '@tanstack/react-query';
+import { auth } from '../../config/firebase';
 import { getTodos, addTodo, updateTodo } from '../../utils/api/todos';
-import styles from './TodosPage.module.css';
 import Header from '../organisms/Header';
 import TodoInput from '../molecules/TodoInput';
 import Todo from '../molecules/Todo';
 import mappers from '../../utils/mappers';
+import styles from './TodosPage.module.css';
 
 const todoStatusFilter = ({ done }, requiredStatus) => done === requiredStatus;
 
@@ -22,6 +24,16 @@ const todoRebuildParser = (todo) => {
 };
 
 function TodosPage() {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = '/';
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const {
     status,
     data: todos,
