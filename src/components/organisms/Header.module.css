@@ -1,3 +1,7 @@
+.header {
+    width: 100%;
+}
+
 .navbar {
     top: 0;
     left: 0;
@@ -30,4 +34,11 @@
     transition-property: all;
     transition-duration: 500ms;
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 2rem 1rem;
+        justify-content: flex-end;
+    }
 }

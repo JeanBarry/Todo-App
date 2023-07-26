@@ -14,10 +14,12 @@ export default {
     buttonBackgroundColor: { control: 'color' },
     buttonFontColor: { control: 'color' },
     buttonLabel: { control: 'text' },
+    buttonWidth: { control: 'text' },
     buttonOnClick: { action: 'Button clicked!' },
     buttonDisabled: { control: 'boolean' },
     height: { control: 'text' },
     width: { control: 'text' },
+    padding: { control: 'text' },
   },
   tags: ['molecules', 'todo', 'autodocs'],
 };
@@ -36,5 +38,6 @@ export const Default = {
     buttonDisabled: false,
     height: '80px',
     width: '700px',
+    padding: '1rem',
   },
 };

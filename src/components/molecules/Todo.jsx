@@ -11,11 +11,13 @@ function Todo({
   completedAt,
   backgroundColor,
   fontColor,
+  padding,
   buttonBackgroundColor,
   buttonFontColor,
   buttonLabel,
   buttonOnClick,
   buttonDisabled,
+  buttonWidth,
   fontSize,
   height,
   width,
@@ -29,6 +31,7 @@ function Todo({
         height,
         width,
         fontSize,
+        padding,
       }}
     >
       <p
@@ -42,8 +45,8 @@ function Todo({
       </p>
       <p className={styles.todo__text}>
         {done
-          ? `Completed in: ${getTimeCompleted(createdAt, completedAt)}`
-          : `Elapsed: ${getTimeElapsed(createdAt)}`}
+          ? `Time: ${getTimeCompleted(createdAt, completedAt)}`
+          : `Time: ${getTimeElapsed(createdAt)}`}
       </p>
       {done ? null : (
         <Button
@@ -54,6 +57,7 @@ function Todo({
           fontSize={fontSize}
           stylingType="primary"
           disabled={buttonDisabled}
+          width={buttonWidth}
         />
       )}
     </div>
@@ -71,8 +75,10 @@ Todo.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   buttonOnClick: PropTypes.func.isRequired,
   buttonDisabled: PropTypes.bool,
+  buttonWidth: PropTypes.string,
   fontColor: PropTypes.string,
   fontSize: PropTypes.string,
+  padding: PropTypes.string,
   height: PropTypes.string,
   width: PropTypes.string,
 };
@@ -84,7 +90,9 @@ Todo.defaultProps = {
   buttonBackgroundColor: '#7765e3',
   buttonFontColor: '#ffffff',
   buttonDisabled: false,
+  buttonWidth: null,
   fontColor: null,
+  padding: '1rem',
   fontSize: '16px',
   height: null,
   width: null,
