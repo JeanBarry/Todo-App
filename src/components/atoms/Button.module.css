@@ -2,6 +2,9 @@
     padding: 1rem;
     font-weight: 600;
     border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .primary {

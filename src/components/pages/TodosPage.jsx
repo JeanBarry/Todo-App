@@ -8,6 +8,7 @@ import TodoInput from '../molecules/TodoInput';
 import Todo from '../molecules/Todo';
 import mappers from '../../utils/mappers';
 import styles from './TodosPage.module.css';
+import responsive from '../../styles/responsive.module.css';
 
 const todoStatusFilter = ({ done }, requiredStatus) => done === requiredStatus;
 
@@ -109,7 +110,7 @@ function TodosPage() {
       <main className={styles.main}>
         <div className={styles.container}>
           <p className={styles.container__title}>Todos</p>
-          <div className={styles.todoInputContainer}>
+          <div className={`${responsive.desktop} ${styles.todoInputContainer}`}>
             <TodoInput
               backgroundColor="#edd3c4"
               buttonLabel="Add Todo"
@@ -123,6 +124,23 @@ function TodosPage() {
               fontSize="1.3rem"
             />
           </div>
+          <div
+            className={`${responsive.mobile} ${styles.todoInputMobileContainer}`}
+          >
+            <TodoInput
+              backgroundColor="#edd3c4"
+              buttonLabel="Add"
+              inputPlaceholder="What do you want to do?"
+              inputWidth="220px"
+              onButtonClick={(value) => {
+                const userId = getUserId();
+                createTodo(value, userId);
+              }}
+              width="320px"
+              height="80px"
+              fontSize="0.8rem"
+            />
+          </div>
           {hasInProgressTodos && (
             <div className={styles.todosContainer}>
               {todos.map((todo) => {
@@ -130,25 +148,50 @@ function TodosPage() {
                 const todoProps = todoOutputParser(todo);
                 return (
                   validTodo && (
-                    <Todo
-                      key={todoProps.id}
-                      backgroundColor="#c8adc0"
-                      buttonLabel="Complete"
-                      buttonOnClick={() => {
-                        completeTodo({
-                          id: todoProps.id,
-                          content: todoProps.content,
-                          createdAt: todoProps.createdAt,
-                          done: false,
-                        });
-                      }}
-                      content={todoProps.content}
-                      createdAt={todoProps.createdAt}
-                      fontColor="#000000"
-                      fontSize="1.3rem"
-                      height="80px"
-                      width="700px"
-                    />
+                    <div key={todoProps.id}>
+                      <div className={responsive.desktop}>
+                        <Todo
+                          backgroundColor="#c8adc0"
+                          buttonLabel="Complete"
+                          buttonOnClick={() => {
+                            completeTodo({
+                              id: todoProps.id,
+                              content: todoProps.content,
+                              createdAt: todoProps.createdAt,
+                              done: false,
+                            });
+                          }}
+                          content={todoProps.content}
+                          createdAt={todoProps.createdAt}
+                          fontColor="#000000"
+                          fontSize="1.3rem"
+                          height="80px"
+                          width="700px"
+                        />
+                      </div>
+                      <div className={responsive.mobile}>
+                        <Todo
+                          backgroundColor="#c8adc0"
+                          buttonLabel="Complete"
+                          buttonOnClick={() => {
+                            completeTodo({
+                              id: todoProps.id,
+                              content: todoProps.content,
+                              createdAt: todoProps.createdAt,
+                              done: false,
+                            });
+                          }}
+                          content={todoProps.content}
+                          createdAt={todoProps.createdAt}
+                          fontColor="#000000"
+                          fontSize="0.8rem"
+                          height="50px"
+                          width="320px"
+                          buttonWidth="80px"
+                          padding="1rem 0 1rem 1rem"
+                        />
+                      </div>
+                    </div>
                   )
                 );
               })}
@@ -164,20 +207,38 @@ function TodosPage() {
                 const todoProps = todoOutputParser(todo);
                 return (
                   validTodo && (
-                    <Todo
-                      key={todoProps.id}
-                      backgroundColor="#c8adc0"
-                      buttonLabel="Complete"
-                      buttonOnClick={() => {}}
-                      content={todoProps.content}
-                      createdAt={todoProps.createdAt}
-                      completedAt={todoProps.completedAt}
-                      fontColor="#000000"
-                      fontSize="1.3rem"
-                      height="80px"
-                      width="700px"
-                      done
-                    />
+                    <div key={todoProps.id}>
+                      <div className={responsive.desktop}>
+                        <Todo
+                          backgroundColor="#c8adc0"
+                          buttonLabel="Complete"
+                          buttonOnClick={() => {}}
+                          content={todoProps.content}
+                          createdAt={todoProps.createdAt}
+                          completedAt={todoProps.completedAt}
+                          fontColor="#000000"
+                          fontSize="1.3rem"
+                          height="80px"
+                          width="700px"
+                          done
+                        />
+                      </div>
+                      <div className={responsive.mobile}>
+                        <Todo
+                          backgroundColor="#c8adc0"
+                          buttonLabel="Complete"
+                          buttonOnClick={() => {}}
+                          content={todoProps.content}
+                          createdAt={todoProps.createdAt}
+                          completedAt={todoProps.completedAt}
+                          fontColor="#000000"
+                          fontSize="0.8rem"
+                          height="50px"
+                          width="320px"
+                          done
+                        />
+                      </div>
+                    </div>
                   )
                 );
               })}

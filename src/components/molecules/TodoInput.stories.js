@@ -12,6 +12,7 @@ export default {
     inputPlaceholder: { control: 'text' },
     onButtonClick: { action: 'Todo added' },
     buttonLabel: { control: 'text' },
+    buttonWidth: { control: 'text' },
     border: { control: 'boolean' },
   },
   tags: ['molecules', 'todo', 'autodocs'],

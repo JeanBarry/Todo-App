@@ -1,5 +1,6 @@
 .page {
     background-color: var(--tertiary-color);
+    width: 100%;
 }
 .main {
     display: flex;
@@ -26,6 +27,13 @@
     border: 1px solid #000000;
 }
 
+.todoInputMobileContainer {
+    border-radius: 0.5rem;
+    border: 1px solid #000000;
+    padding: 0 1rem;
+    margin: 1rem 0;
+}
+
 .todosContainer {
     padding: 1rem;
     display: flex;
@@ -49,4 +57,20 @@
 .loading_text {
     font-size: 2rem;
     font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        justify-content: flex-start;
+    }
+
+    .main {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .container__title {
+        font-size: 2rem;
+        font-weight: bold;
+    }
 }

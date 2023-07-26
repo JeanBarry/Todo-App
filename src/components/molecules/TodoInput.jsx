@@ -14,6 +14,7 @@ function TodoInput({
   inputPlaceholder,
   onButtonClick,
   buttonLabel,
+  buttonWidth,
   border,
 }) {
   const [inputValue, setInputValue] = useState('');
@@ -50,6 +51,7 @@ function TodoInput({
         onClick={submitTodo}
         fontSize={fontSize}
         disabled={disableButton}
+        width={buttonWidth}
       />
     </div>
   );
@@ -63,6 +65,7 @@ TodoInput.propTypes = {
   inputPlaceholder: PropTypes.string,
   inputWidth: PropTypes.string.isRequired,
   onButtonClick: PropTypes.func.isRequired,
+  buttonWidth: PropTypes.string,
   buttonLabel: PropTypes.string.isRequired,
   border: PropTypes.bool,
 };
@@ -71,6 +74,7 @@ TodoInput.defaultProps = {
   backgroundColor: null,
   height: null,
   width: null,
+  buttonWidth: null,
   inputPlaceholder: null,
   border: false,
   fontSize: '16px',
