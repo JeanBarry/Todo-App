@@ -20,6 +20,21 @@ describe('Todo controller getAllTodos', () => {
   });
 });
 
+describe('Todo controller getAllTodosByUserId', () => {
+  test('getAllTodosByUserId should be a function', () => {
+    expect(typeof todoController.getAllTodosByUserId).toBe('function');
+  });
+  test('getAllTodosByUserId should call Todo model find', async () => {
+    await todoController.getAllTodosByUserId(newTodo.userId);
+    expect(todoModel.find).toHaveBeenCalledWith({ userId: newTodo.userId });
+  });
+  test('getAllTodosByUserId should return a list of todos', async () => {
+    todoModel.find.mockReturnValue(allTodos);
+    const todos = await todoController.getAllTodosByUserId(newTodo.userId);
+    expect(todos).toEqual(allTodos);
+  });
+});
+
 describe('Todo controller createTodo', () => {
   test('createTodo should be a function', () => {
     expect(typeof todoController.createTodo).toBe('function');

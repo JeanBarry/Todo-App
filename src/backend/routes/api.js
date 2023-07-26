@@ -11,6 +11,9 @@ const routes = {
   '/api/todo/:id': {
     PUT: TodoController.updateTodo,
   },
+  '/api/todo/user/:userId': {
+    GET: TodoController.getAllTodosByUserId,
+  },
 };
 
 export default routes;

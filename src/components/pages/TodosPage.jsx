@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useQuery } from '@tanstack/react-query';
 import { auth } from '../../config/firebase';
-import { getTodos, addTodo, updateTodo } from '../../utils/api/todos';
+import { addTodo, updateTodo, getTodosByUserId } from '../../utils/api/todos';
 import Header from '../organisms/Header';
 import TodoInput from '../molecules/TodoInput';
 import Todo from '../molecules/Todo';
@@ -15,8 +15,8 @@ const todoOutputParser = (todo) => {
   return mappers.todoOutputMapper(todo);
 };
 
-const todoInputParser = (inputValue) => {
-  return mappers.todoInputMapper(inputValue);
+const todoInputParser = (todoContent, userId) => {
+  return mappers.todoInputMapper(todoContent, userId);
 };
 
 const todoRebuildParser = (todo) => {
@@ -24,15 +24,24 @@ const todoRebuildParser = (todo) => {
 };
 
 function TodosPage() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
         window.location.href = '/';
+      } else {
+        setIsLoggedIn(true);
       }
     });
 
     return () => unsubscribe();
   }, []);
+
+  const getUserId = () => {
+    const user = auth.currentUser;
+    return user.uid;
+  };
 
   const {
     status,
@@ -40,19 +49,30 @@ function TodosPage() {
     refetch,
   } = useQuery({
     queryKey: ['todos'],
-    queryFn: getTodos,
+    queryFn: () => getTodosByUserId(getUserId()),
+    enabled: isLoggedIn,
   });
 
   if (status === 'loading') {
-    return <p>Loading...</p>;
+    return (
+      <div className={`${styles.page} ${styles.loading_container}`}>
+        <p className={styles.loading_text}>Loading...</p>
+      </div>
+    );
   }
 
   if (status === 'error') {
-    return <p>There was an error loading your Todos</p>;
+    return (
+      <div className={`${styles.page} ${styles.loading_container}`}>
+        <p className={styles.loading_text}>
+          There was an error loading your Todos
+        </p>
+      </div>
+    );
   }
 
-  const createTodo = (inputValue) => {
-    const todo = todoInputParser(inputValue);
+  const createTodo = (todoContent, userId) => {
+    const todo = todoInputParser(todoContent, userId);
     addTodo(todo)
       .then(() => {
         refetch();
@@ -96,7 +116,8 @@ function TodosPage() {
               inputPlaceholder="What do you want to do?"
               inputWidth="500px"
               onButtonClick={(value) => {
-                createTodo(value);
+                const userId = getUserId();
+                createTodo(value, userId);
               }}
               width="700px"
               fontSize="1.3rem"
