@@ -7,6 +7,7 @@ describe('Todo model', () => {
   test('Todo model should have set properties', () => {
     expect(todoModel.schema.obj).toHaveProperty('content');
     expect(todoModel.schema.obj).toHaveProperty('done');
+    expect(todoModel.schema.obj).toHaveProperty('userId');
     expect(todoModel.schema.obj).toHaveProperty('createdAt');
     expect(todoModel.schema.obj).toHaveProperty('completedAt');
   });

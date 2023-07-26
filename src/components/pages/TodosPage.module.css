@@ -38,3 +38,15 @@
 .todoInputContainer {
     padding: 0 1rem;
 }
+
+.loading_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loading_text {
+    font-size: 2rem;
+    font-weight: bold;
+}

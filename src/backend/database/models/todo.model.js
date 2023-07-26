@@ -11,6 +11,10 @@ const TodoSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  userId: {
+    type: String,
+    required: true,
+  },
   createdAt: { type: Date, required: true },
   completedAt: { type: Date, default: null },
 });
