@@ -1,0 +1,38 @@
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+      target: ${BUILD_ENVIRONMENT}
+    container_name: todo-app
+    env_file:
+      - ../.env
+    ports:
+      - "3000:3000"
+      - "6006:6006"
+    volumes:
+      - ../src:/app/src
+    networks:
+      - todo-app-network
+    depends_on:
+      - database
+
+  database:
+    image: mongo
+    container_name: database
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "27017:27017"
+    volumes:
+      - ../database-data:/data/db
+    networks:
+      - todo-app-network
+
+networks:
+  todo-app-network:
+    driver: bridge
+
+volumes:
+  database-data:

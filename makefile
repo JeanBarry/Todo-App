@@ -1,29 +1,34 @@
+include .env
+
 copy-env:
 	if [ ! -f .env ]; then cp .env.example .env; fi
 
 dev: copy-env
-	npm run dev
+	docker compose -f docker/compose.yaml --env-file=.env up -d
+
+restart-dev: copy-env
+	docker compose -f docker/compose.yaml --env-file=.env up --build -d
+
+stop-dev:
+	docker compose -f docker/compose.yaml --env-file=.env down
+
+start: copy-env
+	docker compose -f docker/compose.yaml --env-file=.env up -d
+
+stop:
+	docker compose -f docker/compose.yaml --env-file=.env stop
 
 lint:
-	npm run lint
+	docker exec -it todo-app npm run lint
 
 lint-fix:
-	npm run lint:fix
+	docker exec -it todo-app npm run lint:fix
 
 test:
-	npm run test
-
-install:
-	npm install
-
-build:
-	npm run build
-
-start:
-	npm run start
-
-clean:
-	rm -rf node_modules
+	docker exec -it todo-app npm run test
 
 storybook:
-	npm run storybook
+	docker exec -it todo-app npm run storybook
+
+clean:
+	sudo sh ./scripts/clean.sh
