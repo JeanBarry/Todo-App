@@ -26,4 +26,4 @@ npm-debug.log*
 
 .env
 .env*.local
-./database-data/*
+database-data/*
