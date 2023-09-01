@@ -7,6 +7,7 @@ Technologies needed:
 * NodeJS
 * MongoDB
 * NextJS
+* Firebase
 
 ## Getting started:
 
@@ -16,25 +17,12 @@ Technologies needed:
    make copy-env
    ```
 
-2. Proceed to your .env file and fill in the variables needed.
+2. Create a database called todos with a collection called todos. (Currently only databases with mongo+srv driver work)
+3. Proceed to your .env file and fill in the variables needed.
 
-3. Install all the dependencies for the app to work
-
-   ```bash
-   make install
-   ```
-
-4. Build the application
-
-   ```bash
-   make build
-   ```
-
-5.  Run the application
+4. Run the application
 
    ```bash
    make start
    ```
-
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

@@ -1,4 +1,6 @@
-include .env
+ifneq ("$(wildcard .env)","")
+	include .env
+endif
 
 copy-env:
 	if [ ! -f .env ]; then cp .env.example .env; fi
