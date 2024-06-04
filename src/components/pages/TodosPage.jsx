@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useQuery } from '@tanstack/react-query';
 import { auth } from '../../config/firebase';
-import { addTodo, updateTodo, getTodosByUserId } from '../../utils/api/todos';
+import {
+  addTodo,
+  updateTodo,
+  getTodosByUserId,
+  deleteTodo,
+} from '../../utils/api/todos';
 import Header from '../organisms/Header';
 import TodoInput from '../molecules/TodoInput';
 import Todo from '../molecules/Todo';
@@ -99,6 +104,17 @@ function TodosPage() {
       });
   };
 
+  const removeTodo = (id) => {
+    deleteTodo(id)
+      .then(() => {
+        refetch();
+      })
+      .catch(() => {
+        // eslint-disable-next-line no-console
+        console.error('There was an error deleting your todo');
+      });
+  };
+
   const hasDoneTodos = todos.some((todo) => todoStatusFilter(todo, true));
   const hasInProgressTodos = todos.some((todo) =>
     todoStatusFilter(todo, false),
@@ -121,7 +137,7 @@ function TodosPage() {
                 createTodo(value, userId);
               }}
               width="700px"
-              fontSize="1.3rem"
+              fontSize="1rem"
             />
           </div>
           <div
@@ -138,7 +154,7 @@ function TodosPage() {
               }}
               width="320px"
               height="80px"
-              fontSize="0.8rem"
+              fontSize="0.6rem"
             />
           </div>
           {hasInProgressTodos && (
@@ -164,7 +180,7 @@ function TodosPage() {
                           content={todoProps.content}
                           createdAt={todoProps.createdAt}
                           fontColor="#000000"
-                          fontSize="1.3rem"
+                          fontSize="1rem"
                           height="80px"
                           width="700px"
                         />
@@ -184,7 +200,7 @@ function TodosPage() {
                           content={todoProps.content}
                           createdAt={todoProps.createdAt}
                           fontColor="#000000"
-                          fontSize="0.8rem"
+                          fontSize="0.6rem"
                           height="50px"
                           width="320px"
                           buttonWidth="80px"
@@ -211,13 +227,15 @@ function TodosPage() {
                       <div className={responsive.desktop}>
                         <Todo
                           backgroundColor="#c8adc0"
-                          buttonLabel="Complete"
-                          buttonOnClick={() => {}}
+                          buttonLabel="Delete"
+                          buttonOnClick={() => {
+                            removeTodo(todoProps.id);
+                          }}
                           content={todoProps.content}
                           createdAt={todoProps.createdAt}
                           completedAt={todoProps.completedAt}
                           fontColor="#000000"
-                          fontSize="1.3rem"
+                          fontSize="1rem"
                           height="80px"
                           width="700px"
                           done
@@ -226,13 +244,15 @@ function TodosPage() {
                       <div className={responsive.mobile}>
                         <Todo
                           backgroundColor="#c8adc0"
-                          buttonLabel="Complete"
-                          buttonOnClick={() => {}}
+                          buttonLabel="Delete"
+                          buttonOnClick={() => {
+                            removeTodo(todoProps.id);
+                          }}
                           content={todoProps.content}
                           createdAt={todoProps.createdAt}
                           completedAt={todoProps.completedAt}
                           fontColor="#000000"
-                          fontSize="0.8rem"
+                          fontSize="0.6rem"
                           height="50px"
                           width="320px"
                           done

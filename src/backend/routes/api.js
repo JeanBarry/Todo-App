@@ -10,6 +10,7 @@ const routes = {
   },
   '/api/todo/:id': {
     PUT: TodoController.updateTodo,
+    DELETE: TodoController.deleteTodo,
   },
   '/api/todo/user/:userId': {
     GET: TodoController.getAllTodosByUserId,

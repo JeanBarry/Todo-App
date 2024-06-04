@@ -20,6 +20,9 @@ start: copy-env
 stop:
 	docker compose -f docker/compose.yaml --env-file=.env stop
 
+logs:
+	docker logs todo-app -f
+
 lint:
 	docker exec -it todo-app npm run lint
 

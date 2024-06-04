@@ -34,32 +34,35 @@ function Todo({
         padding,
       }}
     >
-      <p
-        className={`${styles.todo__text} ${
-          done
-            ? styles.todo__content_text_done
-            : styles.todo__content_text_pending
-        }`}
-      >
-        {content}
-      </p>
-      <p className={styles.todo__text}>
-        {done
-          ? `Time: ${getTimeCompleted(createdAt, completedAt)}`
-          : `Time: ${getTimeElapsed(createdAt)}`}
-      </p>
-      {done ? null : (
-        <Button
-          backgroundColor={buttonBackgroundColor}
-          fontColor={buttonFontColor}
-          label={buttonLabel}
-          onClick={buttonOnClick}
-          fontSize={fontSize}
-          stylingType="primary"
-          disabled={buttonDisabled}
-          width={buttonWidth}
-        />
-      )}
+      <p className={styles.todo__text}>{content}</p>
+      <div className={styles.todo__subcontainer}>
+        <p className={styles.todo__text}>
+          {done
+            ? getTimeCompleted(createdAt, completedAt)
+            : getTimeElapsed(createdAt)}
+        </p>
+        {done ? (
+          <Button
+            backgroundColor="#bf4437"
+            fontColor="#FFFFFF"
+            label={buttonLabel}
+            fontSize={fontSize}
+            stylingType="secondary"
+            onClick={buttonOnClick}
+          />
+        ) : (
+          <Button
+            backgroundColor={buttonBackgroundColor}
+            fontColor={buttonFontColor}
+            label={buttonLabel}
+            onClick={buttonOnClick}
+            fontSize={fontSize}
+            stylingType="primary"
+            disabled={buttonDisabled}
+            width={buttonWidth}
+          />
+        )}
+      </div>
     </div>
   );
 }

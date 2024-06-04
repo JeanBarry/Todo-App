@@ -64,3 +64,13 @@ describe('Todo controller updateTodo', () => {
     expect(todo).toEqual(newTodo);
   });
 });
+
+describe('Todo controller deleteTodo', () => {
+  test('deleteTodo should be a function', () => {
+    expect(typeof todoController.deleteTodo).toBe('function');
+  });
+  test('deleteTodo should call Todo model deleteOne', async () => {
+    await todoController.deleteTodo(newTodo);
+    expect(todoModel.deleteOne).toHaveBeenCalled();
+  });
+});
