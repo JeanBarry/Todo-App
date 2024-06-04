@@ -44,11 +44,23 @@ export const updateTodo = (todo) => {
     });
 };
 
+export const deleteTodo = (id) => {
+  return axios
+    .delete(`/api/todo/${id}`)
+    .then((response) => response.data)
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      return [];
+    });
+};
+
 const todosApi = {
   getTodos,
   addTodo,
   updateTodo,
   getTodosByUserId,
+  deleteTodo,
 };
 
 export default todosApi;

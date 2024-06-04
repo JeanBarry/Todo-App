@@ -12,7 +12,7 @@ export default {
     border: { control: 'boolean' },
     disabled: { control: 'boolean' },
     type: { control: 'text' },
-    value: { control: 'text' }
+    value: { control: 'text' },
   },
   tags: ['atoms', 'input', 'autodocs'],
 };
