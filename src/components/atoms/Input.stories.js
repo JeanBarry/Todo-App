@@ -12,6 +12,7 @@ export default {
     border: { control: 'boolean' },
     disabled: { control: 'boolean' },
     type: { control: 'text' },
+    value: { control: 'text' }
   },
   tags: ['atoms', 'input', 'autodocs'],
 };
@@ -25,5 +26,6 @@ export const Default = {
     border: true,
     disabled: false,
     type: 'text',
+    value: '',
   },
 };

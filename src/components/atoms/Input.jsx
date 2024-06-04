@@ -12,6 +12,7 @@ function Input({
   fontSize,
   border,
   disabled,
+  value,
 }) {
   return (
     <input
@@ -34,6 +35,7 @@ function Input({
       onKeyDown={(event) => {
         onKeyDown(event);
       }}
+      value={value}
     />
   );
 }
@@ -48,6 +50,7 @@ Input.propTypes = {
   fontSize: PropTypes.string.isRequired,
   border: PropTypes.bool,
   disabled: PropTypes.bool,
+  value: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -57,6 +60,7 @@ Input.defaultProps = {
   border: false,
   disabled: false,
   type: 'text',
+  value: '',
 };
 
 export default Input;

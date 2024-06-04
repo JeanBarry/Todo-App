@@ -43,12 +43,16 @@ function TodoInput({
         placeholder={inputPlaceholder}
         fontSize={fontSize}
         width={inputWidth}
+        value={inputValue}
       />
       <Button
         backgroundColor="#7765e3"
         fontColor="#ffffff"
         label={buttonLabel}
-        onClick={submitTodo}
+        onClick={(value) => {
+          submitTodo(value);
+          setInputValue('');
+        }}
         fontSize={fontSize}
         disabled={disableButton}
         width={buttonWidth}

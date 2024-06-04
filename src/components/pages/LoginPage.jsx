@@ -88,6 +88,7 @@ function LoginPage() {
             width="100%"
             fontSize={fontSize}
             disabled={isLoggingIn}
+            value={email}
           />
           <p className={styles.input_error}>{emailError}</p>
         </div>
@@ -110,6 +111,7 @@ function LoginPage() {
                 }
               }
             }}
+            value={password}
           />
           <p className={styles.input_error}>{passwordError}</p>
         </div>
